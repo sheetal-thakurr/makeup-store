@@ -1,0 +1,61 @@
+openapi: "3.0.1"
+info:
+   title: a basic makeup store API
+   description: A Course About Writing Documentation for Makeup store API
+   version: 1.1.0
+   contact:
+      email: sheetal@google.com
+      url: "https://lco.dev"
+
+# servers:
+#   - url: "https://localhost:4000/api/v1"  
+#     description: for local host -  secure   
+
+#   - url: "http://localhost:4000/api/v1"  
+#     description: for local host -  regular   
+
+servers:
+  - url: "{protocol}://localhost:4000/api/{version}"  
+    description: for local host -
+    variables:
+      protocol:
+        enum:
+          - http
+          - https
+        default:  http   
+      version:
+        enum:
+          - v1
+          - v2
+        default:  v1 
+           
+          
+components:
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: token
+
+    BearerAuth:
+      type: http
+      scheme: bearer  
+
+paths:
+  /dummy:
+    get:
+      tags:
+        - home
+      summary: returns a greet message from LCO
+      responses:
+        200:
+          description: All Good Success
+          content: 
+            application/json:
+              schema:
+                type: string
+                example: "myString"
+        400:
+          description: bad request
+        500:
+          description: internal server error 
