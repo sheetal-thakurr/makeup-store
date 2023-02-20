@@ -1,0 +1,28 @@
+{
+    "shippingInfo":{
+        "address":"Mehatwara",
+        "phoneNumber":"1234567890",
+        "postalCode":"466118",
+        "city":"Jawar",
+        "state":"Madhya Pradesh",
+        "country":"India"
+    },
+    "orderItems": [
+        {
+          "name":"Sheetal Thakur",
+          "quantity": 1,
+          "image": "https://res.cloudinary.com/dzvgiusus/image/upload/v1675187297/uplodedbyuser/th90zj2nx2cwy9gwb99p.jpg",
+          "price": 999,
+          "product": "63eb4986d1f24fd45688a187"
+        }
+    ],
+    "paymentinfo":{
+        "id": "test String"
+    },
+    "taxAmmount": 50,
+    "shippingAmmount": 25,
+    "totalAmmount": 1074
+
+    
+
+}

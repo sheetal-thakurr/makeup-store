@@ -38,12 +38,16 @@ const  homeroute = require("./routes/homeroutes");
 const user_route = require("./routes/userroutes")
 const product_route = require("./routes/productRoutes");
 const payment_route = require('./routes/paymentRoutes');
+const order_route = require('./routes/orderRoute');
+
 
 // router middleware
 app.use("/api/v1",homeroute);
 app.use("/api/v1",user_route);
 app.use("/api/v1" ,product_route);
 app.use("/api/v1" ,payment_route);
+app.use("/api/v1" ,order_route);
+
 
 
 app.get("/signupform" , (req , res) =>{

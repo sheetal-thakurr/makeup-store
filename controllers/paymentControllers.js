@@ -20,6 +20,6 @@ exports.captureStripePayment = BigPromise(async (req , res , next)=> {
       res.status(200).json({
         success: true,
         client_secret: paymentIntent.client_secret,
-        id: paymentIntent.id
+        id: paymentIntent.id,
       });
 });

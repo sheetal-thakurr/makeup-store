@@ -5,7 +5,7 @@ const { Error } = require('mongoose');
 
 
 exports.isLoggedIn = BigPromise(async (req, res, next) => {
-    const token = req.cookies.token || req.header("Authorization").replace("Bearer " , "");
+    const token = req.cookies.token || req.header("Authorization").replace("Bearer " , " ");
 
     if (!token) {
         return next(new Error('first login our website then you can access this page'))
