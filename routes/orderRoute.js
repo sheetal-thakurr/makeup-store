@@ -7,6 +7,7 @@ const
     getOneOrderById ,
      getLoggedInOrder,
      admingetAllOrders,
+     adminUpdateOrder,
      adminDeleteOrder,
  } = require('../controllers/orderControllers');
 
@@ -19,6 +20,8 @@ router.route("/myorder").get(isLoggedIn,getLoggedInOrder);
 
 // admin routes
 router.route("/admin/allOrder").get(isLoggedIn, customRole('admin'), admingetAllOrders);
+router.route("/admin/order/update/:id").put(isLoggedIn, customRole('admin'), adminUpdateOrder);
+
 router.route("/admin/deleteOrder/:id").delete(isLoggedIn, customRole('admin'), adminDeleteOrder);
 
 

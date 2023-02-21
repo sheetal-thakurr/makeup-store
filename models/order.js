@@ -60,6 +60,10 @@ const orderSchema = new mongoose.Schema({
            }
         }
     ],
+    stock: {
+        type: Number,
+        required: [true , 'please add product stock number']
+    },
     paymentinfo:{
         id: {
             type: String

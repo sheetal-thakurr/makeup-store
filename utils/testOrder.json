@@ -16,6 +16,7 @@
           "product": "63eb4986d1f24fd45688a187"
         }
     ],
+    "stock":5,
     "paymentinfo":{
         "id": "test String"
     },

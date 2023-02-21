@@ -7,6 +7,7 @@ exports.createOrder = BigPromise(async(req,res,next)=>{
     const {
         shippingInfo ,
         orderItems,
+        stock,
         paymentinfo,
         taxAmmount,
         shippingAmmount,
@@ -17,6 +18,7 @@ exports.createOrder = BigPromise(async(req,res,next)=>{
    const order = await Order.create({
     shippingInfo ,
     orderItems,
+    stock,
     paymentinfo,
     taxAmmount,
     shippingAmmount,
@@ -68,6 +70,45 @@ exports.admingetAllOrders  = BigPromise(async (req,res,next)=>{
         allOrder
     });
 }) ;
+
+exports.adminUpdateOrder = BigPromise(async(res,req,next)=>{
+
+    let order = await Order.findById(req.params.id);
+
+    // if (!order) {
+    //     return next (new Error('kindaly check your order id'));
+    // }
+    // const order = await  Order.find({user: req.user._id});
+
+
+   if (order.orderStatus === "delivered") {
+    return next(new Error('product has been already marked as delivered'))
+   };
+
+   order.orderStatus = req.body.orderStatus;
+
+   order.orderItems.forEach(async productItem  => {
+    await updateProductStock(productItem.product , productItem.quantity)
+   })
+
+  await order.save();
+
+
+  
+
+  res.status(200).json({
+    success: true,
+  });
+
+  async function updateProductStock(productId , quantity) {
+    let product = await  Product.findById(productId);
+    product.stock = product.stock - quantity
+    await product.save({validateBeforeSave: false});
+  }
+
+});
+
+
 
 exports.adminDeleteOrder  = BigPromise(async (req,res,next)=>{
     const order =await Order.findById(req.params.id);
